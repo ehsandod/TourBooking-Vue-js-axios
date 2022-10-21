@@ -9,7 +9,7 @@
         </div>
         <div class="Aufgabe" v-if="isLogin">
             <h1>Welcome Dear {{ User.firstName }}</h1>
-            <AufgabenBox />
+            <AufgabenBox :host="host" :User="User" />
         </div>
     </div>
 </template>
@@ -25,11 +25,12 @@
         },
         data() {
             return {
-                host: 'https://localhost:44384/api',
+                host: 'https://localhost:7257/api',
                 User: {
                     firstName: '',
                     userName: '',
                     password: '',
+                    config: '',
                 },
                 isLogin: false
             }
@@ -41,6 +42,8 @@
                         localStorage.setItem('token', JSON.stringify(res.data.token));
                         res.data.token = "";
                         this.isLogin = true;
+                        this.User.firstName = res.data.firstName;
+                        this.GetTokenConfig();
                     }
                 })
             },
@@ -51,7 +54,7 @@
                         Authorization: `Bearer ${token}`
                     }
                 };
-                return config;
+                this.User.config = config;
             }
         }
     }

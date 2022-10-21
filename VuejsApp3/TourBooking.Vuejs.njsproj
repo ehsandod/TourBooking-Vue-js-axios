@@ -51,6 +51,7 @@
     <Content Include="src\components\Aufgabe1.vue">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="src\components\Aufgabe2.vue" />
     <Content Include="src\components\AufgabenBox.vue">
       <SubType>Code</SubType>
     </Content>
